@@ -1,51 +1,142 @@
-# Ignore the Maven build directory
-/target/
 
-# Ignore IntelliJ IDEA project files
-.idea/
+######################
+# Project Specific
+######################
+/build/www/**
+/src/test/javascript/coverage/
+/src/test/javascript/PhantomJS*/
 
-# Ignore Eclipse project files
+######################
+# Node
+######################
+/node/
+node_tmp/
+node_modules/
+npm-debug.log.*
+
+######################
+# SASS
+######################
+.sass-cache/
+
+######################
+# Eclipse
+######################
+*.pydevproject
 .project
+.metadata
+tmp/
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
 .classpath
 .settings/
+.loadpath
+.factorypath
+/src/main/resources/rebel.xml
 
-# Ignore the JVM system files (e.g., class files, logs)
-*.class
-*.log
+# External tool builders
+.externalToolBuilders/**
 
-# Ignore Maven wrapper files (optional)
-.mvn/
-!.mvn/wrapper/maven-wrapper.properties
+# Locally stored "Eclipse launch configurations"
+*.launch
 
-# Ignore Spring Boot DevTools files
+# CDT-specific
+.cproject
+
+# PDT-specific
+.buildpath
+
+######################
+# Intellij
+######################
+.idea/
 *.iml
-*.swp
+*.iws
+*.ipr
+*.ids
+*.orig
 
-# Ignore compiled files and generated artifacts
+######################
+# Visual Studio Code
+######################
+.vscode/
+
+######################
+# Maven
+######################
+/log/
+*/target/**
+######################
+# Gradle
+######################
+.gradle/
+/build/
+
+######################
+# Package Files
+######################
 *.jar
 *.war
 *.ear
+*.db
 
-# Ignore local configuration files
-*.local
-
-# Ignore test output
-/test-output/
-
-# Ignore OS generated files
-.DS_Store
+######################
+# Windows
+######################
+# Windows image file caches
 Thumbs.db
 
-# Ignore H2 database files (if using H2 for local development)
-*.db
-*.h2.db
+# Folder config file
+Desktop.ini
 
-# Ignore IntelliJ-specific files (optional)
-.idea/
+######################
+# Mac OSX
+######################
+.DS_Store
+.svn
 
-# Ignore user-specific configurations
-*.iml
+# Thumbnails
+._*
 
-# Ignore Spring Boot logs (optional)
-logs/
-spring.log
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+######################
+# Directories
+######################
+/bin/
+/deploy/
+
+######################
+# Logs
+######################
+*.log
+
+######################
+# Others
+######################
+*.class
+*.*~
+*~
+.merge_file*
+
+######################
+# Gradle Wrapper
+######################
+!gradle/wrapper/gradle-wrapper.jar
+
+######################
+# Maven Wrapper
+######################
+!.mvn/wrapper/maven-wrapper.jar
+
+######################
+# ESLint
+######################
+.eslintcache
+/.idea/
