@@ -42,10 +42,10 @@ public class ProductController {
     }
 
     @PutMapping("/{productId}")
-    public ResponseEntity<ProductDto> updateProduct(@PathVariable("productId") Long productId, @RequestBody ProductDto productDto) {
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateProduct(@PathVariable("productId") Long productId, @RequestBody ProductDto productDto) {
         // TODO handle the actual logic here
         productService.updateProduct(productId, productDto);
-        return new ResponseEntity<>(productDto, HttpStatus.NO_CONTENT);
     }
 
     @GetMapping
