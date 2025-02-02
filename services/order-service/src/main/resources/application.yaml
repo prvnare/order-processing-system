@@ -16,3 +16,9 @@ spring:
     console:
       enabled: "true"
       path: /h2-console
+
+  # product service endpoint details
+products:
+  api:
+    host: http://localhost:8080
+    endpoint: /api/v1/products/
