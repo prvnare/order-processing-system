@@ -1,4 +1,4 @@
-package org.prvn.labs.order.processing.productservice.web.model;
+package org.prvn.labs.order.processing.orderservice.web.client.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,7 +12,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ProductDto {
+public class Product {
+
     private UUID id;
     private String name;
     private String description;
