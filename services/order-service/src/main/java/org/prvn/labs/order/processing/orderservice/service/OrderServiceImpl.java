@@ -11,10 +11,10 @@ import java.util.UUID;
 public class OrderServiceImpl implements OrderService {
 
     @Override
-    public OrderDto getOrderById(Long id) {
+    public OrderDto getOrderById(UUID id) {
         return OrderDto.builder()
                 .id(id)
-                .customerId(1001001L)
+                .customerId(UUID.randomUUID())
                 .totalPrice(100.00)
                 .status("IN-PROG")
                 .paymentStatus("COMPLETED")
@@ -27,7 +27,7 @@ public class OrderServiceImpl implements OrderService {
                 .expectedDeliveryDate(LocalDate.of(2025,10,01))
                 .deliveryDate(LocalDate.of(2025,10,01))
                 .createdAt(new Date())
-                .updatedAt(null)
+                .updatedAt(new Date())
                 .build();
     }
 
@@ -37,12 +37,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void updateOrderStatus(Long id, OrderDto orderDto) {
+    public void updateOrderStatus(UUID id, OrderDto orderDto) {
 
     }
 
     @Override
-    public void deleteOrderById(Long id) {
+    public void deleteOrderById(UUID id) {
 
     }
 }
