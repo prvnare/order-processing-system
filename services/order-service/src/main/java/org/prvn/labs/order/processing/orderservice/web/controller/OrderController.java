@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/orders")
@@ -28,7 +29,7 @@ public class OrderController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<OrderDto> getOrderById(@PathVariable("id") Long id) {
+    public ResponseEntity<OrderDto> getOrderById(@PathVariable("id") UUID id) {
         OrderDto orderDto = orderService.getOrderById(id);
         return new ResponseEntity<>(orderDto, HttpStatus.OK);
     }
@@ -43,16 +44,13 @@ public class OrderController {
 
     @PutMapping("/{id}/status")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateOrderStatus(@PathVariable("id") Long id, @RequestBody OrderDto orderDto) {
+    public void updateOrderStatus(@PathVariable("id") UUID id, @RequestBody OrderDto orderDto) {
         orderService.updateOrderStatus( id, orderDto);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteOrder(@PathVariable("id") Long id) {
+    public void deleteOrder(@PathVariable("id") UUID id) {
         orderService.deleteOrderById(id);
     }
-
-
-
 }

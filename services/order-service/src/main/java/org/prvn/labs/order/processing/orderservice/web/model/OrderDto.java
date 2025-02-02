@@ -15,8 +15,8 @@ import java.util.UUID;
 @Builder
 public class OrderDto {
 
-    private Long id;
-    private Long customerId;
+    private UUID id;
+    private UUID customerId;
     private Double totalPrice;
     private String status;
     private String paymentStatus;
