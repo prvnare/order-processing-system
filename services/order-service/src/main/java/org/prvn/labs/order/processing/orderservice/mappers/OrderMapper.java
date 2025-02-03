@@ -4,7 +4,7 @@ import org.mapstruct.Mapper;
 import org.prvn.labs.order.processing.orderservice.domain.Order;
 import org.prvn.labs.order.processing.orderservice.web.model.OrderDto;
 
-@Mapper
+@Mapper(uses = {DateMapper.class})
 public interface OrderMapper {
     OrderDto toOrderDto(Order order);
     Order toOrder(OrderDto orderDto);

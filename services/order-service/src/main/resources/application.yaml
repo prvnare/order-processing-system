@@ -20,7 +20,7 @@ spring:
   # product service endpoint details
 products:
   api:
-    host: http://localhost:8080
+    host: http://localhost:9090
     endpoint: /api/v1/products/
 
 logging:

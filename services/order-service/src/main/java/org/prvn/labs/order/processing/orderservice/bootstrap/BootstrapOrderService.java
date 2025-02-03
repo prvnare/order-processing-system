@@ -6,6 +6,7 @@ import org.prvn.labs.order.processing.orderservice.repository.OrderRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -34,8 +35,8 @@ public class BootstrapOrderService implements CommandLineRunner {
                             .shippingAmount(10D)
                             .customerId(UUID.randomUUID())
                             .discountAmount(2D)
-                            .deliveryDate(LocalDate.of(2025,2,9))
-                            .expectedDeliveryDate(LocalDate.of(2025,2,8))
+                            .deliveryDate(Date.valueOf(LocalDate.of(2025, 2, 9)))
+                            .expectedDeliveryDate(Date.valueOf(LocalDate.of(2025,2,8)))
                                         .build());
             orderRepository.save(Order.builder()
                     .customerId(UUID.randomUUID())
@@ -48,8 +49,8 @@ public class BootstrapOrderService implements CommandLineRunner {
                     .totalPrice(1000D)
                     .shippingAmount(20D)
                     .discountAmount(1D)
-                    .deliveryDate(LocalDate.of(2025,2,9))
-                    .expectedDeliveryDate(LocalDate.of(2025,2,8))
+                    .deliveryDate(Date.valueOf(LocalDate.of(2025, 2, 9)))
+                    .expectedDeliveryDate(Date.valueOf(LocalDate.of(2025,2,8)))
                     .build());
             orderRepository.save(Order.builder()
                     .customerId(UUID.randomUUID())
@@ -62,8 +63,8 @@ public class BootstrapOrderService implements CommandLineRunner {
                     .totalPrice(10000D)
                     .shippingAmount(10D)
                     .discountAmount(3D)
-                    .deliveryDate(LocalDate.of(2025,2,9))
-                    .expectedDeliveryDate(LocalDate.of(2025,2,8))
+                    .deliveryDate(Date.valueOf(LocalDate.of(2025, 2, 9)))
+                    .expectedDeliveryDate(Date.valueOf(LocalDate.of(2025,2,8)))
                     .build());
         }
         log.info("Bootstrap order service started");
