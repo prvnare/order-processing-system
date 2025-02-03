@@ -1,5 +1,6 @@
 package org.prvn.labs.order.processing.orderservice.web.controller;
 
+import jakarta.validation.Valid;
 import org.prvn.labs.order.processing.orderservice.service.OrderService;
 import org.prvn.labs.order.processing.orderservice.web.model.OrderDto;
 import org.springframework.http.HttpHeaders;
@@ -35,7 +36,7 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<OrderDto> createOrder(@RequestBody OrderDto orderDto) {
+    public ResponseEntity<OrderDto> createOrder(@RequestBody @Valid OrderDto orderDto) {
         OrderDto savedOrder = orderService.saveOrder(orderDto);
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setLocation(URI.create("api/v1/orders/" + savedOrder.getId()));
@@ -44,7 +45,7 @@ public class OrderController {
 
     @PutMapping("/{id}/status")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateOrderStatus(@PathVariable("id") UUID id, @RequestBody OrderDto orderDto) {
+    public void updateOrderStatus(@PathVariable("id") UUID id, @RequestBody @Valid OrderDto orderDto) {
         orderService.updateOrderStatus( id, orderDto);
     }
 

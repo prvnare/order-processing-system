@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.prvn.labs.order.processing.productservice.web.model.ProductDto;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.UUID;
 
 @Slf4j
@@ -21,7 +22,7 @@ public class ProductServiceImpl implements ProductService {
                 .stock(100)
                 .category("Footwear")
                 .status("Available")
-                .supplierId(100)
+                .supplierId(UUID.randomUUID())
                 .discount(35.00)
                 .description("puma shoes for running")
                 .build();
@@ -29,6 +30,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDto saveProduct(ProductDto productDto) {
+        productDto.setId(UUID.randomUUID());
+        productDto.setCreated(new Timestamp(System.currentTimeMillis()));
+        productDto.setUpdated(new Timestamp(System.currentTimeMillis()));
         return productDto;
     }
 
