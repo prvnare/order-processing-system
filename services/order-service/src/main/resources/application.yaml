@@ -22,3 +22,11 @@ products:
   api:
     host: http://localhost:8080
     endpoint: /api/v1/products/
+
+logging:
+  level:
+    org:
+      apache:
+        hc:
+          client5: DEBUG
+
