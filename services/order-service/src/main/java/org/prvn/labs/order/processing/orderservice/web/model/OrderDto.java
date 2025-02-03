@@ -1,6 +1,7 @@
 package org.prvn.labs.order.processing.orderservice.web.model;
 
 import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Null;
 import lombok.AllArgsConstructor;
@@ -20,25 +21,25 @@ public class OrderDto {
 
     @Null
     private UUID id;
-    @NotNull
+    @NotNull(message = "customerId should not be null")
     private UUID customerId;
-    @NotNull
-    @DecimalMin("0.0")
+    @NotNull(message = "totalPrice should not be null")
+    @DecimalMin(value = "0.0" , message = "totalPrice should not be negative")
     private Double totalPrice;
-    @NotNull
+    @NotBlank(message = "status should not be blank or null")
     private String status;
-    @NotNull
+    @NotBlank(message = "paymentStatus should not be blank or null")
     private String paymentStatus;
-    @NotNull
+    @NotBlank(message = "shippingAddress should not be blank or null")
     private String shippingAddress;
+    @NotBlank(message = "billingAddress should not be blank or null")
     private String billingAddress;
-    @Null
+    @Null(message = "trackingNumber should be null")
     private UUID trackingNumber;
-    @NotNull
+    @Null(message = "shippingAmount should be null")
     private Double shippingAmount;
-    @NotNull
+    @Null(message = "discountAmount should be null")
     private Double discountAmount;
-    @NotNull
     private Double taxAmount;
     private LocalDate expectedDeliveryDate;
     private LocalDate deliveryDate;
