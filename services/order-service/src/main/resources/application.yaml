@@ -17,6 +17,11 @@ spring:
       enabled: "true"
       path: /h2-console
 
+# swagger documentation
+springdoc:
+  swagger-ui:
+    enabled: true
+
   # product service endpoint details
 products:
   api:
