@@ -1,8 +1,8 @@
 package org.prvn.labs.order.processing.orderservice.web.controller;
 
+import jakarta.validation.Valid;
 import org.prvn.labs.order.processing.orderservice.service.OrderService;
 import org.prvn.labs.order.processing.orderservice.web.model.OrderDto;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
@@ -35,22 +34,20 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<OrderDto> createOrder(@RequestBody OrderDto orderDto) {
+    public ResponseEntity<Void> createOrder(@RequestBody @Valid OrderDto orderDto) {
         OrderDto savedOrder = orderService.saveOrder(orderDto);
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setLocation(URI.create("api/v1/orders/" + savedOrder.getId()));
-        return new ResponseEntity<>(savedOrder, httpHeaders, HttpStatus.CREATED);
+        return ResponseEntity.created(URI.create("api/v1/orders/" + savedOrder.getId())).build();
     }
 
     @PutMapping("/{id}/status")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateOrderStatus(@PathVariable("id") UUID id, @RequestBody OrderDto orderDto) {
+    public ResponseEntity<Void> updateOrderStatus(@PathVariable("id") UUID id, @RequestBody @Valid OrderDto orderDto) {
         orderService.updateOrderStatus( id, orderDto);
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteOrder(@PathVariable("id") UUID id) {
+    public ResponseEntity<Void> deleteOrder(@PathVariable("id") UUID id) {
         orderService.deleteOrderById(id);
+        return ResponseEntity.noContent().build();
     }
 }

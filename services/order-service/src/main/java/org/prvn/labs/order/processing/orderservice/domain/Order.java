@@ -13,9 +13,8 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.sql.Date;
 import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.UUID;
 
 @Setter
@@ -31,7 +30,7 @@ public class Order {
     @Column(updatable = false, nullable = false, unique = true, length = 36, columnDefinition =  "varchar")
     private UUID id;
 
-    @Column(nullable = false, length = 36, unique = true, updatable = false, columnDefinition = "varchar")
+    @Column(nullable = false, length = 36, updatable = false, columnDefinition = "varchar")
     private UUID customerId;
 
     @Column(nullable = false)
@@ -62,10 +61,10 @@ public class Order {
     private Double taxAmount;
 
     @Column(columnDefinition = "date")
-    private LocalDate expectedDeliveryDate;
+    private Date expectedDeliveryDate;
 
     @Column(columnDefinition = "date")
-    private LocalDate deliveryDate;
+    private Date deliveryDate;
 
     @CreationTimestamp
     @Column(nullable = false, columnDefinition = "timestamp")
@@ -73,5 +72,5 @@ public class Order {
 
     @UpdateTimestamp
     @Column(columnDefinition = "timestamp")
-    private Date updatedAt;
+    private Timestamp updatedAt;
 }
