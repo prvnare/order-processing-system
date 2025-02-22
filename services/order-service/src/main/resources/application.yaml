@@ -34,3 +34,8 @@ logging:
       apache:
         hc:
           client5: DEBUG
+
+eureka:
+  client:
+    enabled: true
+    fetch-registry: true

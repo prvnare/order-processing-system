@@ -4,3 +4,12 @@ server:
 spring:
   application:
     name: api-gateway
+
+logging:
+  level:
+    org:
+      springframework:
+        web:
+          servlet: DEBUG
+        cloud:
+          gateway: DEBUG

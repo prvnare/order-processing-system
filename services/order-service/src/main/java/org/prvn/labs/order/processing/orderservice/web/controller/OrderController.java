@@ -1,5 +1,6 @@
 package org.prvn.labs.order.processing.orderservice.web.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.prvn.labs.order.processing.orderservice.service.OrderService;
 import org.prvn.labs.order.processing.orderservice.web.model.OrderDto;
@@ -26,6 +27,14 @@ public class OrderController {
     public OrderController(OrderService orderService) {
         this.orderService = orderService;
     }
+
+    @GetMapping
+    public String getOrders(HttpServletRequest request) {
+        System.out.println(request.getHeader("Name"));
+        System.out.println(request.getHeaders("User-Agent"));
+        return "This is order service called from the api gateway";
+    }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<OrderDto> getOrderById(@PathVariable("id") UUID id) {

@@ -1,4 +1,4 @@
-package org.prvn.labs.spring.cloud.gateway;
+package org.prvn.labs.order.processing.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
