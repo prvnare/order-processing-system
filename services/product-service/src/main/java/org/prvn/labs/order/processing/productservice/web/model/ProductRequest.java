@@ -4,23 +4,18 @@ import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Null;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
 import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ProductDto {
-
-    @Null
-    private UUID id;
+public class ProductRequest {
 
     @NotNull(message = "name should not be null")
     private String name;
@@ -32,10 +27,10 @@ public class ProductDto {
     @DecimalMin(value = "0.0" , message = "price should not be negative")
     private Double price;
 
-    @Null(message = "imageUrl should be null")
+    @NotNull(message = "imageUrl should not be null")
     private String imageUrl;
 
-    @Null(message = "ctegory shold be null")
+    @NotNull(message = "category should not be null")
     private String category;
 
     @NotNull(message = "brand should not be null")
@@ -52,9 +47,6 @@ public class ProductDto {
     @NotBlank(message = "dimension should not be blank ")
     private String dimension;
 
-    private Timestamp created;
-    private Timestamp updated;
-
     @NotNull(message = "supplierId should not be null")
     private UUID supplierId;
 
@@ -65,6 +57,7 @@ public class ProductDto {
     @NotNull(message = "status should be null")
     private String status;
 
-    @Null(message = "sku should be null")
+    @NotNull(message = "sku should not be null")
     private String sku;
+
 }

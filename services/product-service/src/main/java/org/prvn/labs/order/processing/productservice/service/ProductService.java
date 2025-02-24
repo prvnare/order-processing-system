@@ -1,15 +1,19 @@
 package org.prvn.labs.order.processing.productservice.service;
 
-import org.prvn.labs.order.processing.productservice.web.model.ProductDto;
+import org.prvn.labs.order.processing.productservice.web.model.ProductRequest;
+import org.prvn.labs.order.processing.productservice.web.model.ProductResponse;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface ProductService {
-    ProductDto getProductById(UUID productId);
+    ProductResponse getProductById(UUID productId);
 
-    ProductDto saveProduct(ProductDto productDto);
+    ProductResponse saveProduct(ProductRequest productRequest);
 
-    void updateProduct(UUID productId, ProductDto productDto);
+    void updateProduct(UUID productId, ProductRequest productRequest);
 
     void deleteProductById(UUID productId);
+
+    List<ProductResponse> getAllProducts();
 }

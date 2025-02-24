@@ -1,8 +1,10 @@
 package org.prvn.labs.order.processing.productservice.web.controller;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.prvn.labs.order.processing.productservice.service.ProductService;
-import org.prvn.labs.order.processing.productservice.web.model.ProductDto;
+import org.prvn.labs.order.processing.productservice.web.model.ProductRequest;
+import org.prvn.labs.order.processing.productservice.web.model.ProductResponse;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,28 +17,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
 import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/products")
+@RequiredArgsConstructor
 public class ProductController {
 
     private final ProductService productService;
 
-    public ProductController(ProductService productService){
-        this.productService = productService;
-    }
-
     @GetMapping("/{productId}")
-    public ResponseEntity<ProductDto> getProductById(@PathVariable("productId") UUID productId) {
+    public ResponseEntity<ProductResponse> getProductById(@PathVariable("productId") UUID productId) {
         return ResponseEntity.ok().body(productService.getProductById(productId));
     }
 
     @PostMapping
-    public ResponseEntity<ProductDto> createProduct(@RequestBody @Valid ProductDto productDto) {
-        ProductDto savedProduct = productService.saveProduct(productDto);
+    public ResponseEntity<ProductResponse> createProduct(@RequestBody @Valid ProductRequest productRequest) {
+        ProductResponse savedProduct = productService.saveProduct(productRequest);
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setLocation(URI.create("/api/v1/products/" + savedProduct.getId()));
         return new ResponseEntity<>(responseHeaders, HttpStatus.CREATED);
@@ -44,15 +44,15 @@ public class ProductController {
 
     @PutMapping("/{productId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<Void> updateProduct(@PathVariable("productId") UUID productId, @Valid @RequestBody ProductDto productDto) {
+    public ResponseEntity<Void> updateProduct(@PathVariable("productId") UUID productId, @Valid @RequestBody ProductRequest productRequest) {
         // TODO handle the actual logic here
-        productService.updateProduct(productId, productDto);
+        productService.updateProduct(productId, productRequest);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping
-    public List<ProductDto> getAllProducts() {
-        return null;
+    public List<ProductResponse> getAllProducts() {
+        return productService.getAllProducts();
     }
 
     @DeleteMapping("/{productId}")
@@ -61,5 +61,4 @@ public class ProductController {
         productService.deleteProductById(productId);
         return ResponseEntity.noContent().build();
     }
-
 }

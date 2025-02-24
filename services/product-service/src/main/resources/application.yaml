@@ -4,6 +4,9 @@ server:
 spring:
   application:
     name: product-service
+  data:
+    mongodb:
+      uri: mongodb://root:password@localhost:27017/order-platform?authSource=admin
 eureka:
   client:
     enabled: true
